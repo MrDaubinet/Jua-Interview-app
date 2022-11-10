@@ -23,9 +23,7 @@
 </style>
 
 <div class="h-full  w-full flex flex-row">
-    <div class="py-10">
-        <div class="border-l-2 border-l-black h-full"></div>
-    </div>
+    <div class="border-l-2 border-l-black h-full"></div>
     <div class="h-full w-full flex flex-col py-10 pl-12">
         <!-- search bar -->
         <input 

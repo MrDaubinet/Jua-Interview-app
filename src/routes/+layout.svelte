@@ -1,6 +1,8 @@
 <script>
   import "../app.css";
+  export const prerender = true;
 </script>
+
 <style>
   body {
     font-family: 'Inter Tight', sans-serif;
