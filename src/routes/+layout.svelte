@@ -1,5 +1,12 @@
 <script>
-    import "../app.css";
-  </script>
-  
-  <slot />
+  import "../app.css";
+</script>
+<style>
+  body {
+    font-family: 'Inter Tight', sans-serif;
+  }
+</style>
+
+  <body class="bg-orange-50 h-screen">
+    <slot />
+  </body>
