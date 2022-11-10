@@ -9,6 +9,6 @@
   }
 </style>
 
-  <body class="bg-orange-50 h-screen">
-    <slot />
-  </body>
+<body class="bg-orange-50 h-screen">
+  <slot />
+</body>
