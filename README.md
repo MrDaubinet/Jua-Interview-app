@@ -15,7 +15,7 @@ to be completed.
 To tackle this problem, I started by desigining my user interface in Figma. The design ideology took inspiration from [Refactoring UI](https://www.refactoringui.com/?ref=sidebar) with minimul colors, a soft approach to edges and lots of padding between content. Below are resulting images of my design work.
 
 The landing page which displays a general map, along with a list of saved geojson files.
-![home](/figma/home.png)
+![home](/figma/Home.png)
 
 The creation page, where a user can upload a new geojson file. Either by writing it out or uploading an already created file
 ![home](/figma/new.png)
