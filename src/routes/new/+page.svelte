@@ -1,26 +1,29 @@
 <script>
-    import SideBar from "../../components/sideBar.svelte"
+    import SideBar from "../../components/newSideBar.svelte"
     import Map from "../../components/map.svelte"
     // @ts-nocheck
     import { browser } from '$app/environment';
     import { onMount } from 'svelte'
     // controller
     import { MapController } from "../../controllers/map"
+    import { saveData } from "../../controllers/storage"
 
     let mapController = new MapController()
-    let mapGeoLayer = null
     let mapLoaded = false
 
     onMount(async ()=>{
         if(browser && mapLoaded == false) {
             await mapController.loadMap()
             mapLoaded = mapController.mapLoaded
-            mapGeoLayer = mapController.mapGeoLayer
         }
     })
     
-    function saveFile(){
-        // ...
+    /**
+	 * @param {any} data
+	 */
+    function saveFile(data){
+        // add data to db
+
     }
 
     /**

@@ -1,12 +1,12 @@
 <script>
-    import ExpectedSideBar from "../components/expectedSideBar.svelte"
-    import Map from "../components/map.svelte"
+    import SideBar from "../../components/newSideBar.svelte"
+    import Map from "../../components/map.svelte"
     // @ts-nocheck
     import { browser } from '$app/environment';
     import { onMount } from 'svelte'
     // controller
-    import { MapController } from "../controllers/map"
-    // local variables
+    import { MapController } from "../../controllers/map"
+
     let mapController = new MapController()
     let mapLoaded = false
 
@@ -17,12 +17,6 @@
         }
     })
 
-    /**
-	 * @param {any} data
-	 */
-    function addData(data) {
-        mapController.addNewData(data)
-    }
     
 </script>
 
@@ -33,8 +27,6 @@
     </div>
     <!-- side-bar -->
     <div class="basis-1/3 h-full">
-        <ExpectedSideBar 
-            addMapData={addData}
-        />
+        <!-- todo -->
     </div>
 </div>

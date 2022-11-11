@@ -25,10 +25,10 @@ The view page, where a user can view geojson files and there respective visualiz
 
 Mobile versons of each page can be seen below
 <p float="left">
-    <img src="/Users/jordandaubinet/Documents/Repositories/Assessments/interviews/jua-interview/figma/new-mobile.png" width="100" />
-    <img src="/Users/jordandaubinet/Documents/Repositories/Assessments/interviews/jua-interview/figma/new-mobile.png" width="100" /> 
-    <img src="/Users/jordandaubinet/Documents/Repositories/Assessments/interviews/jua-interview/figma/view-mobile1.png" width="100" />
-    <img src="/Users/jordandaubinet/Documents/Repositories/Assessments/interviews/jua-interview/figma/view-mobile2.png" width="100" />
+    <img src="https://github.com/MrDaubinet/Jua-Interview-app/figma/home-mobile.png" width="100" />
+    <img src="https://github.com/MrDaubinet/Jua-Interview-app/figma/new-mobile.png" width="100" /> 
+    <img src="https://github.com/MrDaubinet/Jua-Interview-app/jua-interview/figma/view-mobile1.png" width="100" />
+    <img src="https://github.com/MrDaubinet/Jua-Interview-app/figma/view-mobile2.png" width="100" />
 </p>
 
 After creating these designs, I deciceded to align the implemented solution closer to the look and feel of the [Jua.ia](jua.ai) website.

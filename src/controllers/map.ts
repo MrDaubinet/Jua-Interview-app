@@ -21,9 +21,6 @@ export class MapController {
     }
     /* Add new datat to the map */
     addNewData(data: any) {
-        console.log(data)
-        console.log(this.mapLoaded)
-        console.log(this.mapGeoLayer)
         this.mapGeoLayer.addData(data);
     }
 }

@@ -1,6 +1,6 @@
 // save geojson file
-export function saveData() {
-    console.log('test')
+export function saveData(data: any) {
+    console.log(data)
 }
 
 // load all geojson files

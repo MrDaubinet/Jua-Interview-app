@@ -20,7 +20,6 @@
 	function onFileChange() {
 		const file = fileInput.files[0];
         name = file.name
-        console.log(file)
 		if (file) {
 			const reader = new FileReader();
 			reader.addEventListener('load', function () {
@@ -42,13 +41,16 @@
         let blob = new Blob([jsonString], {'type':'application/octet-stream'});
         a.href = window.URL.createObjectURL(blob);
         // append .json to name
-        console.log(!filename.includes('.'))
         if(!filename.includes('.')) {
             filename = filename.concat('.json')
         }
         a.download = filename;
         a.click();
     }
+	function applyChanges() {
+		let json = JSON.parse(jsonString);
+		addMapData(json);
+	}
 </script>
 
 <div class="h-full  w-full flex flex-row">
@@ -66,33 +68,38 @@
 		<div class="pt-6 rounded-2xl text-base w-full" style="max-height:-webkit-fill-available">
 			<!-- content here -->
 			<div class="flex flex-col max-h-full pb-10">
-				<pre
-					contenteditable="true"
+				<textarea 
+					bind:value={jsonString}
 					placeholder="Type in geojson..."
-					bind:innerHTML={jsonString}
 					class="px-5 placeholder-black bg-orange-50 text-sm
-                                overflow-y-scroll focus:outline-none
-                                {jsonString == '' ? 'animate-pulse' : 'animate-none'}
-                                jsonContent"
+						overflow-y-scroll focus:outline-none
+						{jsonString == '' ? 'animate-pulse' : 'animate-none'}
+						jsonContent"
+					style="height:-webkit-fill-available"
 				/>
 				<div class="flex flex-col pt-5">
-					<span class="pb-6"
-						>... or
-						<label class="text-orange-400 hover:cursor-pointer">
-							<input
-								placeholder="upload a geojson file"
-								bind:this={fileInput}
-								on:change={onFileChange}
-								type="file"
-							/>
-                            {#if jsonString == ''}
-                                upload a geojson file
-                            {:else}
-                                upload another geojson file
-                            {/if}
-						</label>
-					</span>
-					<div class="flex justify-between">
+					{#if jsonString == ''}
+						<span>... or
+							<label class="text-orange-400 hover:cursor-pointer">
+								<input
+									placeholder="upload a geojson file"
+									bind:this={fileInput}
+									on:change={onFileChange}
+									type="file"
+								/>
+								upload a geojson file
+							</label>
+						</span>
+					{:else}
+						<div>
+							<button 
+								on:click={applyChanges}
+								class="text-orange-400 hover:cursor-pointer"
+							>Apply Changes
+							</button>
+						</div>
+					{/if}
+					<div class="flex justify-between pt-5">
                         <div class=flex>
                             <BackButton />
                             <div class="pl-3">
