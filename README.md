@@ -1,15 +1,14 @@
 # Jua Interview Application
 This repository holds contains my work for the Jua.ai interview assignment.
 
+![home](/static/screenshot.png)
+
 ## Scope of the assesment
 The assesment required a web application which could ingest and display geojson data. Functionality includes:
 * The ability to create a new geojson file,
 * The ability to view a geojson file using a 3rd party library,
 * The ability to edit a geojson file.
 * The ability to save and load geojson files
-
-## Architecture
-to be completed.
 
 ## Design
 To tackle this problem, I started by desigining my user interface in Figma. The design ideology took inspiration from [Refactoring UI](https://www.refactoringui.com/?ref=sidebar) with minimul colors, a soft approach to edges and lots of padding between content. Below are resulting images of my design work.
@@ -52,7 +51,7 @@ Tailwind css is a fantastic styling framework that allows for easy adaption and 
 4. Why did I use Leaflet.js?
 Leaflet is open source mapping visualizer. The repository for Leaflet.js has some of the highest upvoted stars for these kinds of frameworks and i found it fairly fast to get up and running in my front end javascript framework.
 5. Why did I use Firebase hosting and firestore?
-Firebase is easy go to solution for hosting prototype static web applications. Its fast and free to get a web application online and easy to update. Firestore is used as the storage engine for similar reasons. 
+Firebase is easy go to solution for hosting prototype static web applications. Its fast and free to get a web application online and easy to update. Firebase realtime database is used as the NoSQL storage engine for a similar reason. 
 ## local Develpopment
 
 install dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:

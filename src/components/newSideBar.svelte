@@ -1,40 +1,61 @@
 <script>
 	// @ts-nocheck
+	// Libraries
+	import { PlusIcon, XIcon } from 'svelte-feather-icons'
 	// Components
 	import BackButton from './backButton.svelte';
 	import PrimaryButton from './primaryButton.svelte';
     import SecondaryButton from './secondaryButton.svelte';
+	import TertiaryButton from './tertiaryButton.svelte';
+	import TertiaryAlternativeButton from './tertiaryAltButton.svelte';
 	// Function Props
-	export let saveFile;
 	export let addMapData;
+	export let clearMapData;
+	export let saveFile
+	export let showList
+	// Data Props
+	export let name
+	export let jsonString
 	// Local variables
-	/**
-	 * @type {any}
-	 */
-	let name = '';
-	let jsonString = '';
 	let fileInput;
 	let dataLoaded = false;
-
 	// Functions
+	// Read in a new file
 	function onFileChange() {
 		const file = fileInput.files[0];
         name = file.name
+		// append .json to name
+        if(name.includes('.json')) {
+            name = name.replace('.json', '')
+        }
+		if(name.includes('.geoson')) {
+            name = name.replace('.json', '')
+        }
 		if (file) {
 			const reader = new FileReader();
 			reader.addEventListener('load', function () {
-				loadJson(reader.result);
+				let json = JSON.parse(reader.result);
+				jsonString = JSON.stringify(json, null, 4);
 			});
 			reader.readAsText(file);
 			return;
 		}
 	}
-	function loadJson(result) {
-		let json = JSON.parse(result);
-		jsonString = JSON.stringify(json, null, 2);
-		addMapData(json);
-		dataLoaded = true;
-	}
+	// Save geojson online
+	function saveJson() {
+		if(name.includes('.json')) {
+            name = name.replace('.json', '')
+        }
+		if(name.includes('.geojson')) {
+            name = name.replace('.geojson', '')
+        }
+		let json = JSON.parse(jsonString);
+		saveFile(name, json)
+	} // clear data from map
+	function clearData() {
+		dataLoaded = false
+		clearMapData()
+	} // download the file
     function exportFile(){
         let filename = name
         let a = document.createElement('a');
@@ -46,11 +67,13 @@
         }
         a.download = filename;
         a.click();
-    }
+    } // add geojson to map
 	function applyChanges() {
 		let json = JSON.parse(jsonString);
 		addMapData(json);
+		dataLoaded = true
 	}
+
 </script>
 
 <div class="h-full  w-full flex flex-row">
@@ -66,8 +89,31 @@
 		/>
 		<!-- content -->
 		<div class="pt-6 rounded-2xl text-base w-full" style="max-height:-webkit-fill-available">
-			<!-- content here -->
 			<div class="flex flex-col max-h-full pb-10">
+					<div class="w-full flex justify-end px-4">
+						{#if jsonString != ''}
+							<TertiaryAlternativeButton clickFunction={applyChanges}>
+								<div class="flex justify-center items-center rounded-full">
+									<PlusIcon size="16" class="text-orange-400"/>
+									<span class="px-1">
+										Apply
+									</span>
+								</div>
+							</TertiaryAlternativeButton>
+						{/if}
+						{#if dataLoaded}
+							<div class="pl-2">
+								<TertiaryButton clickFunction={clearData}>
+									<div class="flex justify-center items-center rounded-full">
+										<XIcon size="16" class="text-orange-400"/>
+										<span class="px-1">
+											Clear
+										</span>
+									</div>
+								</TertiaryButton>
+							</div>
+						{/if}
+					</div>
 				<textarea 
 					bind:value={jsonString}
 					placeholder="Type in geojson..."
@@ -78,37 +124,31 @@
 					style="height:-webkit-fill-available"
 				/>
 				<div class="flex flex-col pt-5">
-					{#if jsonString == ''}
 						<span>... or
-							<label class="text-orange-400 hover:cursor-pointer">
+							<label class="hover:cursor-pointer">
 								<input
-									placeholder="upload a geojson file"
+									placeholder="load a geojson file"
 									bind:this={fileInput}
 									on:change={onFileChange}
 									type="file"
 								/>
-								upload a geojson file
+								<span class="text-orange-400 ">load</span> a geojson file
 							</label>
 						</span>
-					{:else}
-						<div>
-							<button 
-								on:click={applyChanges}
-								class="text-orange-400 hover:cursor-pointer"
-							>Apply Changes
-							</button>
-						</div>
-					{/if}
 					<div class="flex justify-between pt-5">
                         <div class=flex>
-                            <BackButton />
-                            <div class="pl-3">
-                                <PrimaryButton clickFunction={saveFile} buttonLabel="Save" />
+                            <BackButton clickFunction={showList}/>
+                            <div class="pl-3 w-32">
+                                <PrimaryButton clickFunction={saveJson}>
+									Upload
+								</PrimaryButton>
                             </div>
                         </div>
                         {#if jsonString != ''}
                             <div class="float-right pr-10" >
-                                <SecondaryButton clickFunction={exportFile} buttonLabel="Export" />
+                                <SecondaryButton clickFunction={exportFile}>
+									Download
+								</SecondaryButton>
                             </div>
                         {/if}
 					</div>
@@ -119,11 +159,6 @@
 </div>
 
 <style>
-	[contenteditable='true']:empty:before {
-		content: attr(placeholder);
-		pointer-events: none;
-		display: block; /* For Firefox */
-	}
 	input[type='file'] {
 		display: none;
 	}

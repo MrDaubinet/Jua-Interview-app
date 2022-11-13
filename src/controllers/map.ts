@@ -19,8 +19,12 @@ export class MapController {
         this.mapLoaded = true
         return map
     }
-    /* Add new datat to the map */
+    /* Add new data to the map */
     addNewData(data: any) {
         this.mapGeoLayer.addData(data);
+    }
+    /* Clear all data from map */
+    clearData() {
+        this.mapGeoLayer.clearLayers()
     }
 }

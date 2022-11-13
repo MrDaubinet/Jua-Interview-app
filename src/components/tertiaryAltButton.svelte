@@ -7,7 +7,7 @@
 </script>
 <button
     on:click={clickFunction()}
-    class="h-12 w-full rounded-full bg-orange-200 border-black flex items-center justify-center font-bold
+    class="h-6 px-2 rounded-full bg-orange-200 border-black flex items-center justify-center font-thin text-sm
     hover:bg-white hover:border">
-    <slot></slot>
+    <slot />
 </button>

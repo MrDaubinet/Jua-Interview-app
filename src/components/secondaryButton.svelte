@@ -1,6 +1,5 @@
 <script>
     // props
-    export let buttonLabel = ""
     /**
 	 * @type {() => any}
 	 */
@@ -10,5 +9,5 @@
     on:click={clickFunction()}
     class="h-12 w-32 rounded-full bg-orange-50 border border-black flex items-center justify-center font-bold
     hover:bg-white">
-    <span>{buttonLabel}</span>
+    <slot></slot>
 </button>
