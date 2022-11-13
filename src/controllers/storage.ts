@@ -15,7 +15,7 @@ const firebaseConfig = {
 // Create a svelte store to subscribe to incoming data
 export const geoData = writable({});
 // Initialize Firebase
-const app = await initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service
 export const database = getDatabase(app);
 // create db reference
