@@ -1,5 +1,5 @@
 # Jua Interview Application
-This repository holds contains my work for the Jua.ai interview assignment.
+This repository contains my work for the Jua.ai interview assignment.
 
 ![home](/static/screenshot.png)
 
